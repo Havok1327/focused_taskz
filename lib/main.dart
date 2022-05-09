@@ -2,17 +2,20 @@ import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:master_copy/provider/task_provider.dart';
+import 'package:master_copy/screens/main_screen.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
 import 'package:responsive_framework/utils/scroll_behavior.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'models/task.dart';
 
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); //because we are going to do work before we run app we need to Init first
-  final Directory dir = await getApplicationDocumentsDirectory();
+  final Directory dir = await getApplicationDocumentsDirectory(); //comes from path_provider
   final String path = dir.path;
   await Hive.initFlutter(path);
   await SystemChrome.setPreferredOrientations(
