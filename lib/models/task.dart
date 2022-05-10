@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 
 part 'task.g.dart';
 
@@ -15,7 +16,7 @@ class Task {
   final DateTime createdDate;
 
   @HiveField(3)
-  final String deadLineDate;
+  final String deadlineDate;
 
   @HiveField(4)
   DateTime completedOn;
@@ -30,7 +31,7 @@ class Task {
     required this.taskId,
     required this.taskName,
     required this.createdDate,
-    required this.deadLineDate,
+    required this.deadlineDate,
     required this.completedOn,
     this.isImportant = false,
     this.isFinished = false,
