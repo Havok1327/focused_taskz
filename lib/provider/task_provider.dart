@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:hive/hive.dart';
+import 'package:intl/intl.dart';
 import '../models/task.dart';
 
 class TaskProvider extends ChangeNotifier {
@@ -9,6 +10,7 @@ class TaskProvider extends ChangeNotifier {
   List<Task> _taskList = [];
   List<Task> _sortedTasksByDate = [];
   String stringOfSelectedDate = '';
+  DateTime objectOfSelectedDate = DateTime.now();
 
   void getAllTasks() async {
     var box = await Hive.openBox<Task>(boxName);
@@ -50,6 +52,7 @@ void removeSingleTask(
     _sortedTasksByDate = box.values.
       where((task) => task.deadlineDate == stringOfSelectedDate).toList();
     _taskList = box.values.toList();
+    notifyListeners();
 }
 
 void addNewTask (
@@ -114,5 +117,41 @@ void addNewTask (
 
   }
 
+  void sortTaskByDate(DateTime date) async {
+    objectOfSelectedDate = date;
+    stringOfSelectedDate = DateFormat('MM-dd-yyyy').format(date);
+    var box = await Hive.openBox<Task>(boxName);
+    _sortedTasksByDate = box.values.toList();
+      //.where((task) => task.deadlineDate == stringOfSelectedDate).toList();
+    _taskList = box.values.toList();
+
+    notifyListeners();
+  }
+
+  List<Task> get getCompletedTaskList {
+    List<Task> completedTasks = _taskList.where((task) => task.isFinished ==
+      true).toList();
+    return [...completedTasks];
+}
+
+void deleteAllCompletedTasks() async {
+    var box =  await Hive.openBox<Task>(boxName);
+    _taskList = box.values.toList();
+    List<Task> toDeleteTasks =
+        box.values.where((task) => task.isFinished == true).toList();
+
+    for(Task task in toDeleteTasks) {
+      if (toDeleteTasks.isNotEmpty) {
+        await box.deleteAt(_taskList.indexOf(task));
+        _taskList = box.values.toList();
+      } else {
+        return;
+      }
+    }
+    _sortedTasksByDate = box.values
+      .where((task) => task.deadlineDate == stringOfSelectedDate).toList();
+    _taskList = box.values.toList();
+    notifyListeners();
+}
 
 }

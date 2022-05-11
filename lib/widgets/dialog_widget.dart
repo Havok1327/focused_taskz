@@ -117,8 +117,8 @@ class _DialogBoxState extends State<DialogBox> {
                     if (validate == false & newTask.isNotEmpty) {
                       if(widget.passedTask == null) {
                         final DateTime currentDate = DateTime.now();
-                        final String currentTime =
-                            DateFormat.jm().format(DateTime.now());
+                        // final String currentTime =
+                        //     DateFormat.jm().format(DateTime.now());
                         taskProvider.addNewTask(
                           creationDate: currentDate,
                           taskName: newTask,

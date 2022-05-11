@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import '../constants/constants.dart';
 import '../provider/task_provider.dart';
 import 'package:intl/intl.dart';
+import '../widgets/bottom_navbar_widget.dart';
 import '../widgets/fab_widget.dart';
 import '../widgets/task_card_widget.dart';
 
@@ -24,6 +25,10 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     var provider = Provider.of<TaskProvider>(context, listen: false);
     provider.getAllTasks();
+    //setState(() {
+      provider.sortTaskByDate(DateTime.now());
+    //});
+    //provider.sortTaskByDate(DateTime.now());
     return Scaffold(
       resizeToAvoidBottomInset: false,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

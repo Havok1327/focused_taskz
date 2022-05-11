@@ -35,3 +35,13 @@ const kDisplayTimeStyle = TextStyle(
   color: Colors.deepPurple,
   fontSize: 14,
 );
+
+const kCompletedTaskDateStyle = TextStyle(
+  color: Colors.deepPurple,
+  fontSize: 12,
+);
+
+const kDeleteAllTextStyle = TextStyle(
+  fontSize: 18,
+  color: Colors.white,
+);
