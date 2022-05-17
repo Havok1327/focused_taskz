@@ -70,7 +70,7 @@ class MyApp extends StatelessWidget {
                   'Focused Taskz',
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                      fontSize: 40,
+                      fontSize: 35,
                       letterSpacing: 2.5,
                       fontWeight: FontWeight.bold,
                       color: Color(0xff49b6ff)),
@@ -78,7 +78,7 @@ class MyApp extends StatelessWidget {
               ],
             ),
           ),
-          backgroundColor: Colors.orangeAccent,
+          backgroundColor: Colors.orangeAccent[100]!,
           nextScreen: const MainScreen(),
           splashTransition: SplashTransition.slideTransition,
           splashIconSize: 160,

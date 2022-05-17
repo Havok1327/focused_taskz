@@ -94,25 +94,25 @@ class TaskCard extends StatelessWidget {
                             finalTaskList[index],
                           ),
                           onDismissed: (direction) {
-                            taskProvider.removeSingleTask(
-                              id: finalTaskList[index].taskId,
-                              taskTitle: finalTaskList[index].taskName,
+                            taskProvider.toArchiveTask(
+                              taskId: finalTaskList[index].taskId,
+                              archiveTask: finalTaskList[index].taskName,
                             );
                           },
-                          // background: Container(
-                          //   padding: const EdgeInsets.only(right: 20, left: 20),
-                          //   decoration: BoxDecoration(
-                          //     color: Colors.redAccent[100],
-                          //     borderRadius: BorderRadius.circular(4),
-                          //   ),
-                          //   child: Row(
-                          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          //     children: const [
-                          //       Icon(Icons.delete, size: 22),
-                          //       Icon(Icons.delete, size: 22),
-                          //     ],
-                          //   ),
-                          // ),
+                          background: Container(
+                            padding: const EdgeInsets.only(right: 20, left: 20),
+                            decoration: BoxDecoration(
+                              color: Colors.redAccent[100],
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: const [
+                                Icon(Icons.send_and_archive, size: 22),
+                                Icon(Icons.send_and_archive, size: 22),
+                              ],
+                            ),
+                          ),
                           child: ListTile(
                               key: ValueKey(
                                 finalTaskList[index],

@@ -26,7 +26,7 @@ class _MainScreenState extends State<MainScreen> {
     var provider = Provider.of<TaskProvider>(context, listen: false);
     provider.getAllTasks();
     //setState(() {
-      provider.sortTaskByDate(DateTime.now());
+    provider.sortTaskByDate(DateTime.now());
     //});
     //provider.sortTaskByDate(DateTime.now());
     return Scaffold(
@@ -37,7 +37,19 @@ class _MainScreenState extends State<MainScreen> {
         alignment: Alignment.topCenter,
         children: [
           Container(
-            height: MediaQuery.of(context).size.height * 0.18,
+            child: AppBar(
+              backgroundColor: Colors.blue,
+              title: const Center(
+                  child: Text(
+                'Focused Taskz',
+                style: TextStyle(
+                  fontSize: 23.0,
+                  fontWeight: FontWeight.w900,
+                  color: Color(0xffffd900),
+                ),
+              )),
+            ),
+            height: MediaQuery.of(context).size.height * 0.08,
             width: double.infinity,
             alignment: Alignment.topCenter,
             decoration: BoxDecoration(
@@ -51,7 +63,7 @@ class _MainScreenState extends State<MainScreen> {
           Align(
             alignment: const Alignment(0, 1),
             child: SizedBox(
-              height: MediaQuery.of(context).size.height - 120,
+              height: MediaQuery.of(context).size.height - 140,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [

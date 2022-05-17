@@ -5,8 +5,8 @@ import '../constants/constants.dart';
 import '../models/task.dart';
 import 'package:intl/intl.dart';
 
-class CompletedTasksScreen extends StatelessWidget {
-  const CompletedTasksScreen({Key? key}) : super(key: key);
+class ArchivedTasksScreen extends StatelessWidget {
+  const ArchivedTasksScreen({Key? key}) : super(key: key);
   //static const routeName = 'completed_task-screen';
 
   @override
@@ -18,7 +18,7 @@ class CompletedTasksScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: wholeColor,
       appBar: AppBar(
-        title: const Text('All Completed Tasks'),
+        title: const Text('All Archived Tasks'),
       ),
       body: Column(
         children: [
@@ -73,38 +73,38 @@ class CompletedTasksScreen extends StatelessWidget {
           onPressed: () {
             if (completedTaskList.isNotEmpty) {
               showDialog(
-                  context: context,
-                  builder: (_) => AlertDialog(
-                    backgroundColor: Theme.of(context).canvasColor,
-                    content: const Text('Delete All Completed Tasks?'),
-                    actions: [
-                      TextButton(
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                          child: const Text('NO')),
-                      TextButton(
-                          onPressed: () {
-                            Provider.of<TaskProvider>(context, listen: false)
-                                .deleteAllCompletedTasks();
-                            Navigator.of(context).pop();
-                          },
-                          child: const Text('Yes'),
-                      ),
-                    ],
-                  ),
+                context: context,
+                builder: (_) => AlertDialog(
+                  backgroundColor: Theme.of(context).canvasColor,
+                  content: const Text('Delete All Completed Tasks?'),
+                  actions: [
+                    TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: const Text('NO')),
+                    TextButton(
+                      onPressed: () {
+                        Provider.of<TaskProvider>(context, listen: false)
+                            .deleteAllCompletedTasks();
+                        Navigator.of(context).pop();
+                      },
+                      child: const Text('Yes'),
+                    ),
+                  ],
+                ),
               );
             } else {
               ScaffoldMessenger.of(context)
-                  ..hideCurrentSnackBar()
-                  ..showSnackBar(
-                    const SnackBar(
-                      content: Text(
-                        'No New Task Completed!',
-                      ),
-                      duration: Duration(seconds: 2),
+                ..hideCurrentSnackBar()
+                ..showSnackBar(
+                  const SnackBar(
+                    content: Text(
+                      'No New Task Completed!',
                     ),
-                  );
+                    duration: Duration(seconds: 2),
+                  ),
+                );
             }
           },
           child: const Text(

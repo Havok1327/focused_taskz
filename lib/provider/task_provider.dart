@@ -20,13 +20,15 @@ class TaskProvider extends ChangeNotifier {
 
 List<Task> get getPriorityList {
     List<Task> newPriorityList =
-        _sortedTasksByDate.where((item) => item.isImportant == true).toList();
+      //_sortedTasksByDate.where((item) => item.isImportant == true).toList();
+      _sortedTasksByDate.where((item) => item.isImportant == true && item.isArchived == false).toList();
     return [...newPriorityList];
 }
 
 List<Task> get getOtherTaskList {
     return [
-      ..._sortedTasksByDate.where((task) => task.isImportant == false).toList()
+      //..._sortedTasksByDate.where((task) => task.isImportant == false).toList()
+      ..._sortedTasksByDate.where((task) => task.isImportant == false && task.isArchived == false).toList()
     ];
 }
 
@@ -130,7 +132,7 @@ void addNewTask (
 
   List<Task> get getCompletedTaskList {
     List<Task> completedTasks = _taskList.where((task) => task.isFinished ==
-      true).toList();
+      true || task.isArchived == true).toList();
     return [...completedTasks];
 }
 
@@ -138,7 +140,8 @@ void deleteAllCompletedTasks() async {
     var box =  await Hive.openBox<Task>(boxName);
     _taskList = box.values.toList();
     List<Task> toDeleteTasks =
-        box.values.where((task) => task.isFinished == true).toList();
+        box.values.where((task) => task.isFinished == true || task.isArchived == true ).toList();
+    /// YOU NEED TO EDIT THIS WHEN YOU GET TO THE "ARCHIVED" SCREEN changes!!!!!
 
     for(Task task in toDeleteTasks) {
       if (toDeleteTasks.isNotEmpty) {
@@ -153,5 +156,27 @@ void deleteAllCompletedTasks() async {
     _taskList = box.values.toList();
     notifyListeners();
 }
+
+  void toArchiveTask(
+      {required DateTime taskId,
+        required String archiveTask}) async {
+    var box = await Hive.openBox<Task>(boxName);
+    _taskList = box.values.toList();
+    Task toArchiveTask = _taskList.firstWhere((task) => task.taskId == taskId);
+
+    toArchiveTask.isArchived = true;
+
+    int toModifyTaskIndex = _taskList.indexOf(toArchiveTask);
+    await box.putAt(toModifyTaskIndex, toArchiveTask);
+    _taskList = box.values.toList();
+
+    _sortedTasksByDate = box.values.
+    where((task) => task.deadlineDate == stringOfSelectedDate).toList();
+    _taskList = box.values.toList();
+    notifyListeners();
+
+    notifyListeners();
+  }
+
 
 }

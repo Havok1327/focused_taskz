@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.master_copy">
    <application
-        android:label="master_copy"
+        android:label="Focused Taskz"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 
+//
+
 part 'task.g.dart';
 
 @HiveType(typeId: 0)
@@ -27,6 +29,9 @@ class Task {
   @HiveField(6)
   bool isFinished;
 
+  @HiveField(7)
+  bool isArchived;
+
   Task({
     required this.taskId,
     required this.taskName,
@@ -35,5 +40,6 @@ class Task {
     required this.completedOn,
     this.isImportant = false,
     this.isFinished = false,
+    this.isArchived = false,
   });
 }
