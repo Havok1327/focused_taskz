@@ -90,6 +90,7 @@ class TaskCard extends StatelessWidget {
                         },
                         itemCount: finalTaskList.length,
                         itemBuilder: (_, index) => Dismissible(
+                          direction: DismissDirection.startToEnd,
                           key: ValueKey(
                             finalTaskList[index],
                           ),
@@ -106,10 +107,10 @@ class TaskCard extends StatelessWidget {
                               borderRadius: BorderRadius.circular(4),
                             ),
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: const [
                                 Icon(Icons.send_and_archive, size: 22),
-                                Icon(Icons.send_and_archive, size: 22),
+                                //Icon(Icons.send_and_archive, size: 22),
                               ],
                             ),
                           ),

@@ -7,13 +7,12 @@ import '../models/task.dart';
 import '../provider/task_provider.dart';
 
 class DialogBox extends StatefulWidget {
-  const DialogBox({Key? key, required this.context, this.passedTask, required this.index})
+  const DialogBox(
+      {Key? key, required this.context, this.passedTask, required this.index})
       : super(key: key);
   final BuildContext context;
   final Task? passedTask;
   final int? index;
-
-
 
   @override
   State<DialogBox> createState() => _DialogBoxState();
@@ -34,7 +33,6 @@ class _DialogBoxState extends State<DialogBox> {
   bool? initIsImportant;
   bool? initIsFinished;
 
-
   @override
   void initState() {
     initTaskId = widget.passedTask?.taskId;
@@ -47,10 +45,10 @@ class _DialogBoxState extends State<DialogBox> {
     super.initState();
   }
 
-
   @override
   Widget build(BuildContext context) {
-    TaskProvider taskProvider = Provider.of<TaskProvider>(context, listen: false);
+    TaskProvider taskProvider =
+        Provider.of<TaskProvider>(context, listen: false);
     return SimpleDialog(
       backgroundColor: Theme.of(context).canvasColor,
       contentPadding: const EdgeInsets.all(10),
@@ -65,12 +63,13 @@ class _DialogBoxState extends State<DialogBox> {
       ),
       children: [
         TextFormField(
-        keyboardType: TextInputType.multiline,
+          keyboardType: TextInputType.multiline,
           maxLines: null,
           initialValue: initTaskName,
           autofocus: true,
           decoration: InputDecoration(
             hintText: 'Add a new task',
+            hintStyle: const TextStyle(fontSize: 15, color: Colors.black12),
             fillColor: Colors.yellowAccent[100],
             filled: true,
             errorText: validate ? 'Field can\'t be empty' : null,
@@ -80,21 +79,21 @@ class _DialogBoxState extends State<DialogBox> {
             fontSize: 20,
           ),
           onChanged: (value) {
-          String trimmedValue = value.trim();
-          initTaskName = trimmedValue;
+            String trimmedValue = value.trim();
+            initTaskName = trimmedValue;
           },
-    ),
+        ),
         CheckboxListTile(
-            contentPadding: const EdgeInsets.all(1),
-            value: initIsImportant ?? isImportant,
-            onChanged: (newValue) {
-              if (newValue != null) {
-                setState(() {
-                  initIsImportant = newValue;
-                  isImportant = newValue;
-                });
-              }
-            },
+          contentPadding: const EdgeInsets.all(1),
+          value: initIsImportant ?? isImportant,
+          onChanged: (newValue) {
+            if (newValue != null) {
+              setState(() {
+                initIsImportant = newValue;
+                isImportant = newValue;
+              });
+            }
+          },
           title: Text(
             'Focused Task',
             style: kAddTaskDialogStyle.copyWith(
@@ -108,46 +107,46 @@ class _DialogBoxState extends State<DialogBox> {
           mainAxisSize: MainAxisSize.min,
           children: [
             ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    if (initTaskName != null) {
-                      newTask = initTaskName!;
-                    }
-                    newTask.isEmpty ? validate = true : validate = false;
-                    if (validate == false & newTask.isNotEmpty) {
-                      if(widget.passedTask == null) {
-                        final DateTime currentDate = DateTime.now();
-                        // final String currentTime =
-                        //     DateFormat.jm().format(DateTime.now());
-                        taskProvider.addNewTask(
-                          creationDate: currentDate,
-                          taskName: newTask,
-                          deadlineDate: isDatePicked ? initDeadLineDate!
-                              : taskProvider.stringOfSelectedDate,
-                          isImportant: isImportant,
-                        );
-                      } else {
-                        taskProvider.editTask(
+              onPressed: () {
+                setState(() {
+                  if (initTaskName != null) {
+                    newTask = initTaskName!;
+                  }
+                  newTask.isEmpty ? validate = true : validate = false;
+                  if (validate == false & newTask.isNotEmpty) {
+                    if (widget.passedTask == null) {
+                      final DateTime currentDate = DateTime.now();
+                      // final String currentTime =
+                      //     DateFormat.jm().format(DateTime.now());
+                      taskProvider.addNewTask(
+                        creationDate: currentDate,
+                        taskName: newTask,
+                        deadlineDate: isDatePicked
+                            ? initDeadLineDate!
+                            : taskProvider.stringOfSelectedDate,
+                        isImportant: isImportant,
+                      );
+                    } else {
+                      taskProvider.editTask(
+                        taskId: widget.passedTask!.taskId,
+                        editedTask: Task(
                           taskId: widget.passedTask!.taskId,
-                          editedTask: Task(
-                            taskId: widget.passedTask!.taskId,
-                            taskName: newTask,
-                              completedOn: widget.passedTask!.completedOn,
-                              createdDate: widget.passedTask!.createdDate,
-                              deadlineDate: initDeadLineDate!,
-                              isImportant: initIsImportant!,
-                          ),
-                        );
-                      }
-                      Navigator.of(context).pop();
+                          taskName: newTask,
+                          completedOn: widget.passedTask!.completedOn,
+                          createdDate: widget.passedTask!.createdDate,
+                          deadlineDate: initDeadLineDate!,
+                          isImportant: initIsImportant!,
+                        ),
+                      );
                     }
-                  });
-                },
-                child:const Icon(Icons.save),
+                    Navigator.of(context).pop();
+                  }
+                });
+              },
+              child: const Icon(Icons.save),
             ),
           ],
         ),
-
       ],
     );
   }

@@ -19,7 +19,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
       );
     } else {
       // Navigator.of(context).push(
-      //   CupertinoPageRoute(builder: (context) => const AllTaskSScreen()),
+      //   CupertinoPageRoute(builder: (context) => const SettingsScreen()),
       //);
     }
   }
@@ -33,11 +33,12 @@ class _BottomNavBarState extends State<BottomNavBar> {
         color: Theme.of(context).primaryColor,
         elevation: 0,
         child: BottomNavigationBar(
+          currentIndex: 1,
           elevation: 0,
           backgroundColor: Colors.transparent,
           selectedItemColor: Colors.white,
           unselectedItemColor: Colors.white70,
-          onTap: (index) => changeScreen(index),
+                    onTap: (index) => changeScreen(index),
           iconSize: 25,
           unselectedFontSize: 14,
           selectedFontSize: 15,

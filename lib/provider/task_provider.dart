@@ -16,53 +16,54 @@ class TaskProvider extends ChangeNotifier {
     var box = await Hive.openBox<Task>(boxName);
     _taskList = box.values.toList();
     notifyListeners();
-}
+  }
 
-List<Task> get getPriorityList {
+  List<Task> get getPriorityList {
     List<Task> newPriorityList =
-      //_sortedTasksByDate.where((item) => item.isImportant == true).toList();
-      _sortedTasksByDate.where((item) => item.isImportant == true && item.isArchived == false).toList();
+        _sortedTasksByDate
+            .where(
+                (item) => item.isImportant == true && item.isArchived == false)
+            .toList();
     return [...newPriorityList];
-}
+  }
 
-List<Task> get getOtherTaskList {
+  List<Task> get getOtherTaskList {
     return [
-      //..._sortedTasksByDate.where((task) => task.isImportant == false).toList()
-      ..._sortedTasksByDate.where((task) => task.isImportant == false && task.isArchived == false).toList()
+      ..._sortedTasksByDate
+          .where(
+              (task) => task.isImportant == false && task.isArchived == false)
+          .toList()
     ];
-}
+  }
 
-int currentTotalTaskCount(List<Task> taskList) {
+  int currentTotalTaskCount(List<Task> taskList) {
     return taskList.length;
-}
+  }
 
-int currentFinishedTaskCount(List<Task> taskList) {
+  int currentFinishedTaskCount(List<Task> taskList) {
     List<Task> newList =
         taskList.where((task) => task.isFinished == true).toList();
     return newList.length;
-}
+  }
 
-void removeSingleTask(
-  {required DateTime id, required String taskTitle}) async {
+  void removeSingleTask(
+      {required DateTime id, required String taskTitle}) async {
     var box = await Hive.openBox<Task>(boxName);
     _taskList = box.values.toList();
-    Task toDeleteTask = _taskList.firstWhere((task) => task.taskId == id &&
-      task.taskName == taskTitle);
+    Task toDeleteTask = _taskList
+        .firstWhere((task) => task.taskId == id && task.taskName == taskTitle);
     int toDeleteItemIndex = _taskList.indexOf(toDeleteTask);
     await box.deleteAt(toDeleteItemIndex);
 
-    _sortedTasksByDate = box.values.
-      where((task) => task.deadlineDate == stringOfSelectedDate).toList();
     _taskList = box.values.toList();
     notifyListeners();
-}
+  }
 
-void addNewTask (
-  {required DateTime creationDate,
-    required String deadlineDate,
-    required String taskName,
-    required bool isImportant})
-  async {
+  void addNewTask(
+      {required DateTime creationDate,
+      required String deadlineDate,
+      required String taskName,
+      required bool isImportant}) async {
     var box = await Hive.openBox<Task>(boxName);
     await box.add(
       Task(
@@ -75,16 +76,15 @@ void addNewTask (
       ),
     );
     _taskList = box.values.toList();
-    _sortedTasksByDate = box.values
-      .where((task) => task.deadlineDate == stringOfSelectedDate).toList();
-    _taskList = box.values.toList();
+    // _sortedTasksByDate = box.values
+    //     .where((task) => task.deadlineDate == stringOfSelectedDate)
+    //     .toList();
+    // _taskList = box.values.toList();
 
     notifyListeners();
   }
 
-  void editTask(
-  {required DateTime taskId,
-    required Task editedTask}) async {
+  void editTask({required DateTime taskId, required Task editedTask}) async {
     var box = await Hive.openBox<Task>(boxName);
     _taskList = box.values.toList();
     Task toEditTask = _taskList.firstWhere((task) => task.taskId == taskId);
@@ -92,31 +92,28 @@ void addNewTask (
 
     await box.putAt(editItemIndex, editedTask);
     _taskList = box.values.toList();
-    _sortedTasksByDate = box.values
-      .where((task) => task.deadlineDate == stringOfSelectedDate).toList();
-    _taskList = box.values.toList();
 
     notifyListeners();
   }
 
   void toggleTask(
-  {required DateTime taskId,
-    required String taskName,
-    required DateTime completedOnDate,
-    required bool newValue}) async {
+      {required DateTime taskId,
+      required String taskName,
+      required DateTime completedOnDate,
+      required bool newValue}) async {
     var box = await Hive.openBox<Task>(boxName);
     _taskList = box.values.toList();
-    Task toModifyTask = _taskList.firstWhere((item) => item.taskId == taskId && item.taskName == taskName,
+    Task toModifyTask = _taskList.firstWhere(
+      (item) => item.taskId == taskId && item.taskName == taskName,
     );
-      toModifyTask.isFinished = newValue;
-      toModifyTask.completedOn = completedOnDate;
+    toModifyTask.isFinished = newValue;
+    toModifyTask.completedOn = completedOnDate;
 
-      int toModifyTaskIndex = _taskList.indexOf(toModifyTask);
-      await box.putAt(toModifyTaskIndex, toModifyTask);
-      _taskList = box.values.toList();
+    int toModifyTaskIndex = _taskList.indexOf(toModifyTask);
+    await box.putAt(toModifyTaskIndex, toModifyTask);
+    _taskList = box.values.toList();
 
-      notifyListeners();
-
+    notifyListeners();
   }
 
   void sortTaskByDate(DateTime date) async {
@@ -124,26 +121,29 @@ void addNewTask (
     stringOfSelectedDate = DateFormat('MM-dd-yyyy').format(date);
     var box = await Hive.openBox<Task>(boxName);
     _sortedTasksByDate = box.values.toList();
-      //.where((task) => task.deadlineDate == stringOfSelectedDate).toList();
+    //.where((task) => task.deadlineDate == stringOfSelectedDate).toList();
     _taskList = box.values.toList();
 
     notifyListeners();
   }
 
-  List<Task> get getCompletedTaskList {
-    List<Task> completedTasks = _taskList.where((task) => task.isFinished ==
-      true || task.isArchived == true).toList();
+  List<Task> get getArchivedTaskList {
+    List<Task> completedTasks = _taskList
+        .where((task) => task.isArchived == true)
+        .toList();
     return [...completedTasks];
-}
+  }
 
-void deleteAllCompletedTasks() async {
-    var box =  await Hive.openBox<Task>(boxName);
+  void deleteAllCompletedTasks() async {
+    var box = await Hive.openBox<Task>(boxName);
     _taskList = box.values.toList();
-    List<Task> toDeleteTasks =
-        box.values.where((task) => task.isFinished == true || task.isArchived == true ).toList();
+    List<Task> toDeleteTasks = box.values
+        .where((task) => task.isFinished == true || task.isArchived == true)
+        .toList();
+
     /// YOU NEED TO EDIT THIS WHEN YOU GET TO THE "ARCHIVED" SCREEN changes!!!!!
 
-    for(Task task in toDeleteTasks) {
+    for (Task task in toDeleteTasks) {
       if (toDeleteTasks.isNotEmpty) {
         await box.deleteAt(_taskList.indexOf(task));
         _taskList = box.values.toList();
@@ -151,15 +151,15 @@ void deleteAllCompletedTasks() async {
         return;
       }
     }
-    _sortedTasksByDate = box.values
-      .where((task) => task.deadlineDate == stringOfSelectedDate).toList();
+    // _sortedTasksByDate = box.values
+    //     .where((task) => task.deadlineDate == stringOfSelectedDate)
+    //     .toList();
     _taskList = box.values.toList();
     notifyListeners();
-}
+  }
 
   void toArchiveTask(
-      {required DateTime taskId,
-        required String archiveTask}) async {
+      {required DateTime taskId, required String archiveTask}) async {
     var box = await Hive.openBox<Task>(boxName);
     _taskList = box.values.toList();
     Task toArchiveTask = _taskList.firstWhere((task) => task.taskId == taskId);
@@ -170,13 +170,31 @@ void deleteAllCompletedTasks() async {
     await box.putAt(toModifyTaskIndex, toArchiveTask);
     _taskList = box.values.toList();
 
-    _sortedTasksByDate = box.values.
-    where((task) => task.deadlineDate == stringOfSelectedDate).toList();
-    _taskList = box.values.toList();
-    notifyListeners();
+    // _sortedTasksByDate = box.values
+    //     //.where((task) => task.deadlineDate == stringOfSelectedDate)
+    //     .toList();
+   // _taskList = box.values.toList();
 
     notifyListeners();
   }
 
+  void toActiveTask(
+      {required DateTime taskId, required String archiveTask}) async {
+    var box = await Hive.openBox<Task>(boxName);
+    _taskList = box.values.toList();
+    Task toArchiveTask = _taskList.firstWhere((task) => task.taskId == taskId);
 
+    toArchiveTask.isArchived = false;
+
+    int toModifyTaskIndex = _taskList.indexOf(toArchiveTask);
+    await box.putAt(toModifyTaskIndex, toArchiveTask);
+    _taskList = box.values.toList();
+
+    // _sortedTasksByDate = box.values
+    //     //.where((task) => task.deadlineDate == stringOfSelectedDate)
+    //     .toList();
+    //_taskList = box.values.toList();
+
+    notifyListeners();
+  }
 }

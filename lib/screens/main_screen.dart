@@ -71,8 +71,8 @@ class _MainScreenState extends State<MainScreen> {
                     flex: 3,
                     child: TaskCard(
                       cardName: 'Focused Tasks',
-                      cardSideColor: const Color(0xffee4266),
                       cardMaxColor: Colors.lime[50]!,
+                      cardSideColor: const Color(0xffee4266),
                       isImp: true,
                       placeholderWidget: Column(),
                     ),
