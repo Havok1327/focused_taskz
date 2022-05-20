@@ -11,15 +11,23 @@ class ArchivedTasksScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color wholeColor = Colors.yellow[50]!;
-
+    const Color wholeColor = kLightPrimaryColor;
 
     List<Task> archivedTaskList =
         Provider.of<TaskProvider>(context).getArchivedTaskList;
     return Scaffold(
       backgroundColor: wholeColor,
       appBar: AppBar(
-        title: const Text('All Archived Tasks'),
+        backgroundColor: kPrimaryColor,
+        iconTheme: const IconThemeData(color: kLightPrimaryColor),
+        title: const Text(
+          'All Archived Tasks',
+          style: TextStyle(
+            fontSize: 23.0,
+            fontWeight: FontWeight.w900,
+            color: kLightPrimaryColor,
+          ),
+        ),
       ),
       body: Column(
         children: [
@@ -39,13 +47,13 @@ class ArchivedTasksScreen extends StatelessWidget {
                 direction: DismissDirection.endToStart,
                 key: ValueKey(
                   archivedTaskList[index],
-                  ),
+                ),
                 onDismissed: (direction) {
-                    Provider.of<TaskProvider>(context, listen: false)
-                        .toActiveTask(
-                        taskId: archivedTaskList[index].taskId,
-                        archiveTask: archivedTaskList[index].taskName);
-                  },
+                  Provider.of<TaskProvider>(context, listen: false)
+                      .toActiveTask(
+                          taskId: archivedTaskList[index].taskId,
+                          archiveTask: archivedTaskList[index].taskName);
+                },
                 background: Container(
                   padding: const EdgeInsets.only(right: 20, left: 20),
                   decoration: BoxDecoration(
@@ -53,12 +61,11 @@ class ArchivedTasksScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(4),
                   ),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: const [
-                    Icon(Icons.restore, size: 22),
-                    //Icon(Icons.restore, size: 22),
-                    ]
-                  ),
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: const [
+                        Icon(Icons.restore, size: 22),
+                        //Icon(Icons.restore, size: 22),
+                      ]),
                 ),
                 child: ListTile(
                   tileColor: wholeColor,
@@ -70,13 +77,15 @@ class ArchivedTasksScreen extends StatelessWidget {
                     archivedTaskList[index].taskName,
                     style: kTaskNameStyle,
                   ),
-                  subtitle: Text('Completed on ' + DateFormat('MM-dd-yyyy')
-                    .format(archivedTaskList[index].completedOn),
+                  subtitle: Text(
+                      'Completed on ' +
+                          DateFormat('MM-dd-yyyy')
+                              .format(archivedTaskList[index].completedOn),
                       style: kCompletedTaskDateStyle),
                   trailing: IconButton(
                     icon: const Icon(
                       Icons.delete,
-                      color: Colors.red,
+                      color: Colors.redAccent,
                     ),
                     onPressed: () {
                       Provider.of<TaskProvider>(context, listen: false)
@@ -92,7 +101,7 @@ class ArchivedTasksScreen extends StatelessWidget {
         ],
       ),
       bottomNavigationBar: BottomAppBar(
-        color: Colors.red,
+        color: kPrimaryColor,
         child: TextButton(
           onPressed: () {
             if (archivedTaskList.isNotEmpty) {

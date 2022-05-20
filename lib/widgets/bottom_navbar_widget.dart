@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:master_copy/constants/constants.dart';
 import '../screens/archived_tasks_screen.dart';
+import '../screens/settings_screen.dart';
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({Key? key}) : super(key: key);
@@ -18,9 +20,9 @@ class _BottomNavBarState extends State<BottomNavBar> {
         CupertinoPageRoute(builder: (context) => const ArchivedTasksScreen()),
       );
     } else {
-      // Navigator.of(context).push(
-      //   CupertinoPageRoute(builder: (context) => const SettingsScreen()),
-      //);
+      Navigator.of(context).push(
+        CupertinoPageRoute(builder: (context) => const SettingsScreen()),
+      );
     }
   }
 
@@ -36,8 +38,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
           currentIndex: 1,
           elevation: 0,
           backgroundColor: Colors.transparent,
-          selectedItemColor: Colors.white,
-          unselectedItemColor: Colors.white70,
+          selectedItemColor: kLightPrimaryColor,
+          unselectedItemColor: kLightPrimaryColor,
                     onTap: (index) => changeScreen(index),
           iconSize: 25,
           unselectedFontSize: 14,

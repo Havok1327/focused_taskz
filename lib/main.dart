@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:master_copy/constants/constants.dart';
 import '../provider/task_provider.dart';
 import '../screens/main_screen.dart';
 import 'package:path_provider/path_provider.dart';
@@ -50,8 +51,8 @@ class MyApp extends StatelessWidget {
         title: 'Focused Taskz',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          canvasColor: const Color(0xffd1faff),
-          primaryColor: const Color(0xff0c89dd),
+          canvasColor: kDividerColor,
+          primaryColor: kPrimaryColor,
         ),
         home: AnimatedSplashScreen(
           splash: SizedBox(
@@ -67,18 +68,18 @@ class MyApp extends StatelessWidget {
                   ),
                 ),
                 const Text(
-                  'Focused Taskz',
+                  'Focused Tasks',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       fontSize: 35,
                       letterSpacing: 2.5,
                       fontWeight: FontWeight.bold,
-                      color: Color(0xff49b6ff)),
+                      color: Color(0xff212121)),
                 )
               ],
             ),
           ),
-          backgroundColor: Colors.orangeAccent[100]!,
+          backgroundColor: const Color(0xffB3E5FC),
           nextScreen: const MainScreen(),
           splashTransition: SplashTransition.slideTransition,
           splashIconSize: 160,

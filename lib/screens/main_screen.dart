@@ -38,14 +38,14 @@ class _MainScreenState extends State<MainScreen> {
         children: [
           Container(
             child: AppBar(
-              backgroundColor: Colors.blue,
+              backgroundColor: kPrimaryColor,
               title: const Center(
                   child: Text(
-                'Focused Taskz',
+                'Focused Tasks',
                 style: TextStyle(
                   fontSize: 23.0,
-                  fontWeight: FontWeight.w900,
-                  color: Color(0xffffd900),
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white,
                 ),
               )),
             ),
@@ -71,8 +71,8 @@ class _MainScreenState extends State<MainScreen> {
                     flex: 3,
                     child: TaskCard(
                       cardName: 'Focused Tasks',
-                      cardMaxColor: Colors.lime[50]!,
-                      cardSideColor: const Color(0xffee4266),
+                      cardMaxColor: kLightPrimaryColor,
+                      cardSideColor: kPrimaryColor,
                       isImp: true,
                       placeholderWidget: Column(),
                     ),
@@ -81,8 +81,8 @@ class _MainScreenState extends State<MainScreen> {
                     flex: 6,
                     child: TaskCard(
                       cardName: 'Parked Tasks',
-                      cardMaxColor: Colors.lime[50]!,
-                      cardSideColor: const Color(0xff0b3866),
+                      cardMaxColor: kLightPrimaryColor,
+                      cardSideColor: kDarkPrimaryColor,
                       isImp: false,
                       placeholderWidget: Column(),
                     ),

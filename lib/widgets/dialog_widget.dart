@@ -57,7 +57,7 @@ class _DialogBoxState extends State<DialogBox> {
         'Add Task',
         style: kAddTaskDialogStyle.copyWith(
           fontSize: 22,
-          color: Theme.of(context).primaryColorDark,
+          color: kPrimaryText,
         ),
         textAlign: TextAlign.center,
       ),
@@ -69,8 +69,8 @@ class _DialogBoxState extends State<DialogBox> {
           autofocus: true,
           decoration: InputDecoration(
             hintText: 'Add a new task',
-            hintStyle: const TextStyle(fontSize: 15, color: Colors.black12),
-            fillColor: Colors.yellowAccent[100],
+            hintStyle: const TextStyle(fontSize: 15, color: Colors.black26),
+            fillColor: kLightPrimaryColor,
             filled: true,
             errorText: validate ? 'Field can\'t be empty' : null,
           ),
@@ -98,7 +98,7 @@ class _DialogBoxState extends State<DialogBox> {
             'Focused Task',
             style: kAddTaskDialogStyle.copyWith(
               fontSize: 16,
-              color: Theme.of(context).primaryColorDark,
+              color: kPrimaryText,
             ),
           ),
         ),

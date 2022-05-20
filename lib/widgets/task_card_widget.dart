@@ -39,7 +39,7 @@ class TaskCard extends StatelessWidget {
       color: cardMaxColor,
       margin: kCardMargin,
       elevation: 4,
-      shadowColor: const Color(0xffd1faff),
+      shadowColor: kPrimaryColor,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(
           Radius.circular(10),
@@ -82,7 +82,7 @@ class TaskCard extends StatelessWidget {
                         separatorBuilder: (context, index) {
                           return Divider(
                             height: 1,
-                            thickness: 1.5,
+                            thickness: 2,
                             indent: 14,
                             endIndent: 14,
                             color: cardSideColor.withOpacity(0.1),
@@ -103,7 +103,7 @@ class TaskCard extends StatelessWidget {
                           background: Container(
                             padding: const EdgeInsets.only(right: 20, left: 20),
                             decoration: BoxDecoration(
-                              color: Colors.redAccent[100],
+                              color: Colors.redAccent[100]!,
                               borderRadius: BorderRadius.circular(4),
                             ),
                             child: Row(
@@ -128,7 +128,7 @@ class TaskCard extends StatelessWidget {
                               iconColor: Theme.of(context).primaryColorDark,
                               horizontalTitleGap: 15,
                               leading: InkWell(
-                                splashColor: Colors.pink,
+                                splashColor: kPrimaryText,
                                 onTap: () {
                                   showDialog(
                                     context: context,
@@ -145,8 +145,7 @@ class TaskCard extends StatelessWidget {
                                   width: 60,
                                   height: 60,
                                   decoration: BoxDecoration(
-                                      color:
-                                          Theme.of(context).primaryColorLight,
+                                      color: kDividerColor,
                                       shape: BoxShape.circle,
                                       border: Border.all(
                                         color: cardMaxColor,
@@ -166,7 +165,7 @@ class TaskCard extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              textColor: cardSideColor,
+                              textColor: kPrimaryText, ///Task Text Color
                               title: InkWell(
                                 splashColor: cardMaxColor,
                                 onTap: () {
@@ -182,7 +181,7 @@ class TaskCard extends StatelessWidget {
                                 child: Text(
                                   finalTaskList[index].taskName,
                                   style: kTaskNameStyle.copyWith(
-                                    decorationColor: cardSideColor,
+                                    decorationColor: Colors.redAccent,
                                     decorationThickness: 2,
                                     decoration: finalTaskList[index].isFinished
                                         ? TextDecoration.lineThrough

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:master_copy/constants/constants.dart';
 import '../widgets/dialog_widget.dart';
 
 class FABWidget extends StatelessWidget {
@@ -7,7 +8,7 @@ class FABWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
-      backgroundColor: const Color(0xffffd900),
+      backgroundColor: kPrimaryColor,
       splashColor: Colors.pinkAccent,
       foregroundColor: Colors.white,
       tooltip: 'Adds a new task',
@@ -23,7 +24,7 @@ class FABWidget extends StatelessWidget {
       child: const Icon(
         Icons.add_task,
         size: 34,
-        color: Color(0xff0c89dd),
+        color: Colors.white,
       ),
     );
   }
