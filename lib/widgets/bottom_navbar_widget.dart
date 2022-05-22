@@ -20,9 +20,24 @@ class _BottomNavBarState extends State<BottomNavBar> {
         CupertinoPageRoute(builder: (context) => const ArchivedTasksScreen()),
       );
     } else {
-      Navigator.of(context).push(
-        CupertinoPageRoute(builder: (context) => const SettingsScreen()),
+      showDialog(
+        context: context,
+        builder: (_) => AlertDialog(
+          backgroundColor: Theme.of(context).canvasColor,
+          content: const Text('Not yet Implemented.'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('OK'),
+            ),
+          ],
+        ),
       );
+      // Navigator.of(context).push(
+      //   CupertinoPageRoute(builder: (context) => const SettingsScreen()),
+      // );
     }
   }
 
@@ -40,7 +55,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
           backgroundColor: Colors.transparent,
           selectedItemColor: kLightPrimaryColor,
           unselectedItemColor: kLightPrimaryColor,
-                    onTap: (index) => changeScreen(index),
+          onTap: (index) => changeScreen(index),
           iconSize: 25,
           unselectedFontSize: 14,
           selectedFontSize: 15,

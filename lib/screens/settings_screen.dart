@@ -19,18 +19,36 @@ class SettingsScreen extends StatelessWidget {
       backgroundColor: wholeColor,
       appBar: AppBar(
         backgroundColor: kPrimaryColor,
+        centerTitle: true,
         iconTheme: const IconThemeData(color: kLightPrimaryColor),
         title: const Text(
           'Settings',
           style: TextStyle(
             fontSize: 23.0,
-            fontWeight: FontWeight.w900,
+            fontWeight: FontWeight.w600,
             color: kLightPrimaryColor,
           ),
         ),
       ),
-      body: Column(),
-        //children: [
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            padding: const EdgeInsets.only(
+                top: 30.0, left: 10.0, right: 30.0, bottom: 30.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: const [
+                Text(
+                  'Checking Task automatically archives it.',
+                  style: kSettingStyle,
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+      //children: [
       //     Expanded(
       //       child: ListView.separated(
       //         separatorBuilder: (context, index) {

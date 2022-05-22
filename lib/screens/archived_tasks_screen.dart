@@ -19,12 +19,13 @@ class ArchivedTasksScreen extends StatelessWidget {
       backgroundColor: wholeColor,
       appBar: AppBar(
         backgroundColor: kPrimaryColor,
+        centerTitle: true,
         iconTheme: const IconThemeData(color: kLightPrimaryColor),
         title: const Text(
           'All Archived Tasks',
           style: TextStyle(
             fontSize: 23.0,
-            fontWeight: FontWeight.w900,
+            fontWeight: FontWeight.w600,
             color: kLightPrimaryColor,
           ),
         ),
