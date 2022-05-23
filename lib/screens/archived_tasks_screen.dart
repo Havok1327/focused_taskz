@@ -7,7 +7,6 @@ import 'package:intl/intl.dart';
 
 class ArchivedTasksScreen extends StatelessWidget {
   const ArchivedTasksScreen({Key? key}) : super(key: key);
-  //static const routeName = 'completed_task-screen';
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +64,6 @@ class ArchivedTasksScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: const [
                         Icon(Icons.restore, size: 22),
-                        //Icon(Icons.restore, size: 22),
                       ]),
                 ),
                 child: ListTile(
@@ -120,7 +118,7 @@ class ArchivedTasksScreen extends StatelessWidget {
                     TextButton(
                       onPressed: () {
                         Provider.of<TaskProvider>(context, listen: false)
-                            .deleteAllCompletedTasks();
+                            .deleteAllArchivedTasks();
                         Navigator.of(context).pop();
                       },
                       child: const Text('Yes'),
@@ -134,7 +132,7 @@ class ArchivedTasksScreen extends StatelessWidget {
                 ..showSnackBar(
                   const SnackBar(
                     content: Text(
-                      'No New Task Completed!',
+                      'No Archived Tasks!',
                     ),
                     duration: Duration(seconds: 2),
                   ),

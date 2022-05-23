@@ -76,10 +76,6 @@ class TaskProvider extends ChangeNotifier {
       ),
     );
     _taskList = box.values.toList();
-    // _sortedTasksByDate = box.values
-    //     .where((task) => task.deadlineDate == stringOfSelectedDate)
-    //     .toList();
-    // _taskList = box.values.toList();
 
     notifyListeners();
   }
@@ -121,7 +117,6 @@ class TaskProvider extends ChangeNotifier {
     stringOfSelectedDate = DateFormat('MM-dd-yyyy').format(date);
     var box = await Hive.openBox<Task>(boxName);
     _sortedTasksByDate = box.values.toList();
-    //.where((task) => task.deadlineDate == stringOfSelectedDate).toList();
     _taskList = box.values.toList();
 
     notifyListeners();
@@ -134,14 +129,12 @@ class TaskProvider extends ChangeNotifier {
     return [...completedTasks];
   }
 
-  void deleteAllCompletedTasks() async {
+  void deleteAllArchivedTasks() async {
     var box = await Hive.openBox<Task>(boxName);
     _taskList = box.values.toList();
     List<Task> toDeleteTasks = box.values
         .where((task) => task.isFinished == true || task.isArchived == true)
         .toList();
-
-    /// YOU NEED TO EDIT THIS WHEN YOU GET TO THE "ARCHIVED" SCREEN changes!!!!!
 
     for (Task task in toDeleteTasks) {
       if (toDeleteTasks.isNotEmpty) {
@@ -151,9 +144,6 @@ class TaskProvider extends ChangeNotifier {
         return;
       }
     }
-    // _sortedTasksByDate = box.values
-    //     .where((task) => task.deadlineDate == stringOfSelectedDate)
-    //     .toList();
     _taskList = box.values.toList();
     notifyListeners();
   }
@@ -170,11 +160,6 @@ class TaskProvider extends ChangeNotifier {
     await box.putAt(toModifyTaskIndex, toArchiveTask);
     _taskList = box.values.toList();
 
-    // _sortedTasksByDate = box.values
-    //     //.where((task) => task.deadlineDate == stringOfSelectedDate)
-    //     .toList();
-   // _taskList = box.values.toList();
-
     notifyListeners();
   }
 
@@ -189,11 +174,6 @@ class TaskProvider extends ChangeNotifier {
     int toModifyTaskIndex = _taskList.indexOf(toArchiveTask);
     await box.putAt(toModifyTaskIndex, toArchiveTask);
     _taskList = box.values.toList();
-
-    // _sortedTasksByDate = box.values
-    //     //.where((task) => task.deadlineDate == stringOfSelectedDate)
-    //     .toList();
-    //_taskList = box.values.toList();
 
     notifyListeners();
   }

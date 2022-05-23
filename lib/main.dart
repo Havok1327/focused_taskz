@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:flutter/services.dart';
-import 'package:hive/hive.dart';
+//import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:master_copy/constants/constants.dart';
 import '../provider/task_provider.dart';
@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
             ],
           );
         },
-        title: 'Focused Taskz',
+        title: 'Focused Tasks',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           canvasColor: kDividerColor,

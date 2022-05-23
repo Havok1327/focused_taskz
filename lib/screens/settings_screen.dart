@@ -3,11 +3,10 @@ import 'package:provider/provider.dart';
 import '../provider/task_provider.dart';
 import '../constants/constants.dart';
 import '../models/task.dart';
-import 'package:intl/intl.dart';
+
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({Key? key}) : super(key: key);
-  //static const routeName = 'completed_task-screen';
 
   @override
   Widget build(BuildContext context) {

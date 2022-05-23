@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:master_copy/constants/constants.dart';
 import '../screens/archived_tasks_screen.dart';
-import '../screens/settings_screen.dart';
+//import '../screens/settings_screen.dart';
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({Key? key}) : super(key: key);
@@ -24,7 +24,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
         context: context,
         builder: (_) => AlertDialog(
           backgroundColor: Theme.of(context).canvasColor,
-          content: const Text('Not yet Implemented.'),
+          content: const Text('Not yet implemented.'),
           actions: [
             TextButton(
               onPressed: () {

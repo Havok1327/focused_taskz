@@ -3,11 +3,12 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import '../constants/constants.dart';
-import 'package:path_provider/path_provider.dart';
+//import 'package:path_provider/path_provider.dart';
 import '../models/task.dart';
 import '../provider/task_provider.dart';
 import 'dialog_widget.dart';
 
+//ignore: must_be_immutable
 class TaskCard extends StatelessWidget {
   TaskCard({
     Key? key,
@@ -152,14 +153,14 @@ class TaskCard extends StatelessWidget {
                                         width: 4,
                                       )),
                                   child: Padding(
-                                    padding: const EdgeInsets.all(2.0),
+                                    padding: const EdgeInsets.all(1.0),
                                     child: Text(
                                       // finalTaskList[index]
                                       //     .taskName[0]
                                       //     .toUpperCase(),
                                       DateFormat('MM/dd').format(finalTaskList[index].createdDate),
                                       style: kDisplayTimeStyle,
-                                      softWrap: true,
+                                      softWrap: false,
                                       textAlign: TextAlign.center,
                                     ),
                                   ),

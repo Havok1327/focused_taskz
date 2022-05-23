@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../constants/constants.dart';
 import '../provider/task_provider.dart';
-import 'package:intl/intl.dart';
+//import 'package:intl/intl.dart';
 import '../widgets/bottom_navbar_widget.dart';
 import '../widgets/fab_widget.dart';
 import '../widgets/task_card_widget.dart';
@@ -15,11 +15,11 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  String formattedDate = DateFormat('MM/dd/yyyy').format(DateTime.now());
-  String formattedTime = DateFormat.Hm().format(DateTime.now());
-  TimeOfDay? distime;
-  var finalTime;
-  DateTime? disDate;
+  // //String formattedDate = DateFormat('MM/dd/yyyy').format(DateTime.now());
+  // //String formattedTime = DateFormat.Hm().format(DateTime.now());
+  // TimeOfDay? distime;
+  // var finalTime;
+  // DateTime? disDate;
 
   @override
   Widget build(BuildContext context) {
@@ -52,13 +52,13 @@ class _MainScreenState extends State<MainScreen> {
             height: MediaQuery.of(context).size.height * 0.08,
             width: double.infinity,
             alignment: Alignment.topCenter,
-            decoration: BoxDecoration(
-              color: Theme.of(context).primaryColor,
-              borderRadius: const BorderRadius.only(
-                bottomRight: Radius.circular(20),
-                bottomLeft: Radius.circular(20),
-              ),
-            ),
+            // decoration: BoxDecoration(
+            //   color: Theme.of(context).primaryColor,
+            //   borderRadius: const BorderRadius.only(
+            //     bottomRight: Radius.circular(20),
+            //     bottomLeft: Radius.circular(20),
+            //   ),
+            // ),
           ),
           Align(
             alignment: const Alignment(0, 1),
