@@ -43,7 +43,7 @@ const kAddTaskDialogStyle = TextStyle(
 const kDisplayTimeStyle = TextStyle(
   fontWeight: FontWeight.w700,
   color: kPrimaryText,
-  fontSize: 14,
+  fontSize: 16,
 );
 
 const kCompletedTaskDateStyle = TextStyle(
@@ -70,7 +70,7 @@ const kDeleteAllTextStyle = TextStyle(
 // const kPrimaryText = Color(0xFF212121);
 // const kSecondaryText = Color(0xFF757575);
 // const kDividerColor = Color(0xFFBDBDBD);
-///Bluegrey Color Palette
+///Blue Color Palette
 // const kPrimaryColor = Color(0xff607D8B);
 // const kLightPrimaryColor = Color(0xFFFFFFFF);
 // const kDarkPrimaryColor = Color(0xFF455A64);

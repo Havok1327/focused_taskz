@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:master_copy/constants/constants.dart';
+import '../constants/constants.dart';
 import '../screens/archived_tasks_screen.dart';
 //import '../screens/settings_screen.dart';
 

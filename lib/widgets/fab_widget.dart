@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:master_copy/constants/constants.dart';
+import '../constants/constants.dart';
 import '../widgets/dialog_widget.dart';
 
 class FABWidget extends StatelessWidget {

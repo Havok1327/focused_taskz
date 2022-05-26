@@ -154,14 +154,16 @@ class TaskCard extends StatelessWidget {
                                       )),
                                   child: Padding(
                                     padding: const EdgeInsets.all(1.0),
-                                    child: Text(
-                                      // finalTaskList[index]
-                                      //     .taskName[0]
-                                      //     .toUpperCase(),
-                                      DateFormat('MM/dd').format(finalTaskList[index].createdDate),
-                                      style: kDisplayTimeStyle,
-                                      softWrap: false,
-                                      textAlign: TextAlign.center,
+                                    child: FittedBox(
+                                      child: Text(
+                                        // finalTaskList[index]
+                                        //     .taskName[0]
+                                        //     .toUpperCase(),
+                                        DateFormat('MM/dd').format(finalTaskList[index].createdDate),
+                                        style: kDisplayTimeStyle,
+                                        softWrap: false,
+                                        textAlign: TextAlign.center,
+                                      ),
                                     ),
                                   ),
                                 ),

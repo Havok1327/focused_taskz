@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.master_copy">
+    package="com.blunderingblog.focusedtasks">
    <application
-        android:label="Focused Taskz"
+        android:label="Focused Tasks"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

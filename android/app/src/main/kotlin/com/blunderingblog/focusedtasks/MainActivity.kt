@@ -1,4 +1,4 @@
-package com.example.master_copy
+package com.blunderingblog.focusedtasks
 
 import io.flutter.embedding.android.FlutterActivity
 
