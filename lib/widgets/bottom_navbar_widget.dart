@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../constants/constants.dart';
 import '../screens/archived_tasks_screen.dart';
-//import '../screens/settings_screen.dart';
+import '../screens/settings_screen.dart';
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({Key? key}) : super(key: key);
@@ -20,24 +20,24 @@ class _BottomNavBarState extends State<BottomNavBar> {
         CupertinoPageRoute(builder: (context) => const ArchivedTasksScreen()),
       );
     } else {
-      showDialog(
-        context: context,
-        builder: (_) => AlertDialog(
-          backgroundColor: Theme.of(context).canvasColor,
-          content: const Text('Not yet implemented.'),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('OK'),
-            ),
-          ],
-        ),
+      //showDialog(
+        // context: context,
+        // builder: (_) => AlertDialog(
+        //   backgroundColor: Theme.of(context).canvasColor,
+        //   content: const Text('Not yet implemented.'),
+        //   actions: [
+        //     TextButton(
+        //       onPressed: () {
+        //         Navigator.of(context).pop();
+        //       },
+        //       child: const Text('OK'),
+        //     ),
+        //   ],
+        // ),
+      //);
+      Navigator.of(context).push(
+        CupertinoPageRoute(builder: (context) => const SettingsScreen()),
       );
-      // Navigator.of(context).push(
-      //   CupertinoPageRoute(builder: (context) => const SettingsScreen()),
-      // );
     }
   }
 

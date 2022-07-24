@@ -18,7 +18,7 @@ const kTaskNameStyle = TextStyle(
 const kSettingStyle = TextStyle(
     fontWeight: FontWeight.w700,
     letterSpacing: 1,
-    fontSize: 14
+    fontSize: 20
 );
 
 const kCardMargin = EdgeInsets.only(
